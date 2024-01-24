@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
+  <img src="logo.png" style="position: absolute; top: 11%; right: 45%; width: 10%;">
+  <h1 style="color: white; font-size: 12px; position: absolute; top: 1%; right: 48%;">Created by Mohamed Eltaib
+    <h1
+      style="color: white; font-size: 15px; font-style: italic; font-weight: 100; width: 99%; position: absolute; top: 15%;">
+      "Stay Ahead of the Storm with Us."
+    </h1>
+
+    <form id="search-form">
+      <input type="text" id="city-input" placeholder="Toronto">
+      <button type="submit" id="submit"></button>
+    </form>
+
+    <div id="weather-info">
+      <img src="" alt="" id="weather-img">
+    </div>
+
+    <div id="b"></div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const cityInput = document.querySelector('#city-input');
+        const submitBtn = document.querySelector('#submit');
+        const weatherData = document.querySelector('#weather-info');
+        const form = document.querySelector('#search-form');
+
+        if (cityInput && submitBtn && weatherData && form) {
+          form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            weatherData.innerHTML = '<p>Working...</p>';
+            const city = cityInput.value;
+            const apiKey = '87c8b10c4e5440fe446e7fab9b8888b3';
+            const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+            try {
+              const response = await fetch(apiUrl);
+              const data = await response.json();
+
+              const weatherIcon = getWeatherIcon(data);
+
+              weatherData.innerHTML = `
+            ${weatherIcon}
+            <h1 style="color: white; font-size:25px; "></h1>
+            <p style="color:white; font-size:65px; font-weight: 600; text-align: left;"> ${data.main.temp} &#8451;</p>
+            <p style="color: white; font-size: 25px; font-weight: bold; text-align: left;">${data.name}</p>
+            <p style="color:white; font-size:18px;  text-align: left; "> ${data.weather[0].main}</p>
+            <p style="color:white; font-size:18px;  text-align: left;"> ${data.weather[0].description}</p>
+            <p style="color:white; font-size:18px;  text-align: left;">Humidity: ${data.main.humidity}%</p>
+          `;
+            } catch (error) {
+              console.error(error);
+            }
+          });
+        }
+      });
+
+      function getWeatherIcon(data) {
+        const weatherConditions = {
+          Clouds: 'cloud.png',
+          Rain: 'rain.png',
+          Clear: 'sun.png',
+          Thunderstorm: 'thunderstorm.png',
+          Drizzle: 'Drizzle.png',
+          Snow: 'snow.png',
+          Mist: 'mist.png',
+        };
+
+        const main = data.weather && data.weather.length > 0 ? data.weather[0].main : '';
+        const iconFileName = weatherConditions[main] || '';
+        const iconURL = iconFileName ? `icon/${iconFileName}` : '';
+
+        return iconURL ? `<img src="${iconURL}" style="width:200px;height:200px;float:left;">` : '';
+      }
+
+    </script>
+
+</body>
+
+</html>

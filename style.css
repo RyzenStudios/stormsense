@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+
+body {
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  background-color: rgb(17, 17, 19);
+  background: url('1237275.png') no-repeat center center fixed;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+}
+
+
+#city-input {
+  font-weight: 500;
+  font-size: .8vw;
+  color: #fff;
+  background-color: rgb(28, 28, 30);
+  box-shadow: 0 0 .4vw rgba(0, 0, 0, 0.5), 0 0 0 .15vw transparent;
+  border-radius: 0.4vw;
+  border: none;
+  outline: none;
+  padding: 0.4vw;
+  width: 25em;
+  margin-top: 200px;
+  margin-right: 50px;
+  transition: .4s;
+}
+
+#city-input:hover {
+  box-shadow: 0 0 0 .05vw rgba(187, 135, 235, 0.186);
+}
+
+#city-input:focus {
+  box-shadow: 0 0 0 .05vw rgb(110, 48, 182);
+}
+
+
+
+#b {
+  background: conic-gradient(from calc(var(--r2) - 55deg) at var(--x) 50px, #222 0%, #fff 5%, #fff 25%, #222 30%);
+  animation: -0.64s rotating2 3s linear infinite, -0.64s x 3s linear infinite;
+}
+
+
+button[type="submit"] {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  font-size: 16px;
+  background-color: rgba(12, 12, 12, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: absolute;
+  top: 21.5%;
+  right: 62%;
+  animation: pulse 1s ease-out infinite;
+  background-image: url('Untitled-1.png');
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  transition: all 0.3s ease-in-out;
+}
+
+
+#weather-info {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 26%;
+  left: 36%;
+  transition: all 0.3s ease-in-out;
+  animation: pulse 10s ease-out infinite;
+}
+
+body::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 32%;
+  height: 80%;
+  background-image: url('whi.png');
+  filter: brightness(40%);
+  border-radius: 45px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+  z-index: -1;
+  opacity: 100%;
+  animation: fade-in 6s ease-out infinite;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 32%;
+  height: 80%;
+  background-image: url('1237275.png');
+  filter: brightness(40%);
+  border-radius: 45px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+  z-index: -1;
+}
